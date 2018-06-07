@@ -1,0 +1,16 @@
+﻿@model HPlusSports.Models.ShoppingCart
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<div class="row">
+  <div class="well well-lg">
+    <p>Your shopping cart is empty!</p>
+    <p>
+      Head on over to
+      @Html.ActionLink("the Product Catalog", "Index", "Products")
+      to find something!
+    </p>
+  </div>
+</div>

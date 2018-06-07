@@ -1,0 +1,17 @@
+﻿@model HPlusSports.Models.ProductRating
+
+@if (Model == null || Model.ReviewCount == 0)
+{
+  <span><em>No Rating</em></span>
+}
+else
+{
+  <span title="@Model.Rating.GetValueOrDefault().ToString("N1")">
+    @for (var i = 1; i <= 5; i++)
+    {
+      var starClass = (Model.Rating >= i) ? "star" : "star-empty";
+      <span class="Model-star glyphicon glyphicon-@starClass"></span>
+    }
+  </span>
+  <span>(@Model.ReviewCount)</span>
+}

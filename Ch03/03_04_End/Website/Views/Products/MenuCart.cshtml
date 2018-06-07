@@ -1,0 +1,61 @@
+﻿@model ShoppingCart
+@{
+    var cart = Model;
+}
+<a class="dropbtn nav-cart">
+    <i class="glyphicon glyphicon-shopping-cart"></i>
+    Cart
+    @if (cart.Items.Any())
+    {
+        <span>
+            (@cart.Items.Count() items)
+        </span>
+    }
+</a>
+<div class="dropdown-content">
+
+    @if (cart.Items.Count == 0)
+    {
+        <p>Your shopping cart is empty - keep shopping!</p>
+    }
+    else
+    {
+        <table class="table table-condensed">
+            @foreach (var item in cart.Items)
+            {
+                <tr class="text-middle">
+                    <td>
+                        <a href="@Url.Action("Remove", "Cart", new { id = item.Id })">
+                            <i class="glyphicon glyphicon-remove text-danger"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <img width="50" height="50" src="@Url.Action("Product", "Images", new { id = item.SKU })" alt="">
+                    </td>
+                    <td>
+                        <a href="@Url.Product(item.SKU)">
+                            @item.Name
+                        </a>
+                    </td>
+                    <td class="text-right">
+                        @item.Quantity
+                        x
+                        @item.Price.ToString("C")
+                    </td>
+                </tr>
+            }
+            <tr>
+                <th colspan="3" class="text-right">
+                    Subtotal:
+                </th>
+                <th class="text-right">
+                    @cart.Subtotal.ToString("C")
+                </th>
+            </tr>
+        </table>
+    }
+
+    <p class="buttons text-right">
+        <a href="@Url.Action("Index", "Cart")" class="btn btn-default">View Cart</a>
+    </p>
+</div>

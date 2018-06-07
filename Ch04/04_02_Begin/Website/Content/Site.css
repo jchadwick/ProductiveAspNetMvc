@@ -1,0 +1,191 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+body, button, input, textarea {
+  color: #43454b;
+  font-family: "Source Sans Pro",HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  line-height: 1.618;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #c0af00;
+  clear: both;
+  font-weight: 300;
+}
+
+  a, a:visited, a:hover {
+    color: #c0af00;
+  }
+
+.btn {
+  font-weight: bold
+}
+
+    .btn-warning, a:visited.btn-warning, a.btn-warning, a:hover.btn-warning {
+      color: #ffffff;
+    }
+
+  .navbar {
+    clear: both;
+  }
+
+.navbar-nav {
+  padding-top: 2em;
+}
+
+.well-lg {
+  font-size: 120%;
+}
+
+.dropbtn.nav-cart {
+  font-size: 20px;
+}
+
+.title h1 {
+  font-weight: bold;
+  padding-top: 1em;
+}
+
+#main {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.category {
+  height: 370px;
+}
+.category h3 {
+  margin-top: .5em;
+}
+.category img {
+  width: 20em;
+}
+
+.pager a {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+  white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/* Dropdown Button */
+.dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 500px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding:20px;
+    margin:0;
+}
+
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
+.text-large {
+  font-size: 130%;
+}
+
+.text-middle,
+.text-middle td {
+  vertical-align: middle !important;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.nav.navbar-nav .btn {
+  margin-top: 15px;
+}
+
+.rating-star {
+  color: #f9db2c;
+  font-weight: bold;
+}
+
+.cart .product-image {
+    width: 5em;
+    height: 5em;
+    margin-right: 1em;
+}
+
+.product-summary {
+  margin-bottom: 1em;
+  height: 24em;
+}
+
+  .product-summary .product-image {
+    display: block;
+    clear: both;
+    width: 70%;
+    margin: auto;
+  }
+
+  .product-summary .name {
+    font-size: 120%;
+    font-weight: bold;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .product .price,
+  .product-summary .price {
+    font-size: 130%;
+  }
+
+
+.product .buy-button {
+  margin-top: 1em;
+}
+
+.tablesorter-default .header,
+.tablesorter-default .tablesorter-header {
+  background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
+  background-position: center right;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  white-space: normal;
+  padding: 4px 20px 4px 4px;
+}
+
+th.tablesorter-header[disabled] {
+  background-image: none !important;
+}

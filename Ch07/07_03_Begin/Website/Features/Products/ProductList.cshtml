@@ -1,0 +1,103 @@
+﻿@model ProductsListViewModel
+
+@{
+    var category = (Category)ViewData["Category"];
+    ViewBag.Title = category.Name;
+}
+
+<div class="paged-content">
+
+  <div class="row">
+
+    @foreach (var product in Model.Products)
+    {
+        <div class="product-summary col-md-3 text-center">
+          <h4>
+            <a href="@Url.Product(product.SKU)">
+              <img class="product-image img-thumbnail" src="@Url.Action("Product", "Images", new { id = product.SKU })" />
+              <span class="name">@product.Name</span>
+            </a>
+          </h4>
+          <p>
+            <span class="price">@Html.DisplayFor(x => product.Price)</span>
+            <span class="text-muted">@Html.DisplayFor(x => product.MSRP)</span>
+            @if (product.HasAdvertisableDiscount)
+            {
+                <span class="discount label label-primary">
+                  @Html.DisplayFor(x => product.Discount) off!
+                </span>
+            }
+          </p>
+          <p>
+            @Html.Rating(product.Rating)
+          </p>
+          <p>
+            <a class="btn btn-sm btn-warning" href="@Url.Action("Add", "Cart", new { product.SKU })">
+              Add To Cart
+            </a>
+          </p>
+        </div>
+    }
+
+  </div>
+
+
+  <div class="pager row">
+
+    <div class="pull-left">
+      <nav>
+        <ul class="pager">
+          <li>
+            <span>
+              @ViewBag.ResultsCount results
+            </span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="col-md-4 text-right">
+      @if (ViewBag.PreviousPage != null)
+      {
+          <nav>
+            <ul class="pager">
+              <li>
+                <a data-partial href="?page=@ViewBag.PreviousPage&count=@ViewBag.PageSize">
+                  <i class="glyphicon glyphicon-chevron-left"></i>
+                  Prev.
+                </a>
+              </li>
+            </ul>
+          </nav>
+      }
+    </div>
+
+    <div class="col-md-2 text-center">
+      <nav>
+        <ul class="pager">
+          <li>
+            <span>Page @ViewBag.CurrentPage of @ViewBag.PageCount</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="col-md-5 text-left">
+      @if (ViewBag.NextPage != null)
+      {
+          <nav>
+            <ul class="pager">
+              <li>
+                <a data-partial href="?page=@ViewBag.NextPage&count=@ViewBag.PageSize">
+                  Next
+                  <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+      }
+    </div>
+
+  </div>
+
+</div>

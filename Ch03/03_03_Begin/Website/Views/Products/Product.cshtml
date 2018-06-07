@@ -1,0 +1,82 @@
+﻿@model Product
+
+@{
+    ViewBag.Title = "";
+}
+
+<div class="product row">
+
+  <div class="col-md-1">
+    @if (Model.Images.Count > 1)
+    {
+        <ul class="list-group">
+          @foreach (var image in Model.Images)
+          {
+              <li class="list-group-item">
+                <img class="img img-thumbnail"
+                     src="@Url.Action("Image", "Images", new { id = image.Id })" />
+              </li>
+          }
+        </ul>
+    }
+  </div>
+
+  <div class="col-md-4">
+    <img class="img img-thumbnail"
+         src="@Url.Action("Product", "Images", new { id = Model.SKU })" />
+  </div>
+
+  <div class="col-md-6">
+
+    <h2>@Model.Name</h2>
+
+    <p>
+      @{
+          var rating = (HPlusSports.Models.ProductRating)ViewData["Rating"];
+      }
+      @if (rating == null || rating.ReviewCount == 0)
+      {
+          <span><em>No Rating</em></span>
+      }
+      else
+      {
+          <span title="@rating.Rating.GetValueOrDefault().ToString("N1")">
+            @for (var i = 1; i <= 5; i++)
+            {
+              var starClass = (rating.Rating >= i) ? "star" : "star-empty";
+                <span class="rating-star glyphicon glyphicon-@starClass"></span>
+            }
+          </span>
+          <span>(@rating.ReviewCount)</span>
+      }
+    </p>
+
+    <p>
+      <span class="price">@Html.DisplayFor(modelItem => modelItem.Price)</span>
+      <span class="text-muted">@Html.DisplayFor(modelItem => modelItem.MSRP)</span>
+      @{
+          var discount = (Model.MSRP - Model.Price) / Model.MSRP;
+      }
+      @if (discount > .05)
+      {
+          <span class="discount label label-primary">
+            @discount.ToString("P0") off!
+          </span>
+      }
+    </p>
+
+    <p class="buy-button">
+      <a class="btn btn-sm btn-warning" href="@Url.Action("Add", "Cart", new { Model.SKU })">
+        Add To Cart
+      </a>
+    </p>
+
+    <hr />
+
+    <p>
+      @Html.DisplayFor(model => model.Summary)
+    </p>
+
+  </div>
+
+</div>

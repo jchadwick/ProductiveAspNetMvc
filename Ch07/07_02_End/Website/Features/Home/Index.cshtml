@@ -1,0 +1,19 @@
+﻿@model IDictionary<HPlusSports.Models.Category, int>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<div class="row">
+
+  @foreach (var category in Model.Keys)
+  {
+      <div class="category col-md-4 text-center">
+        <a href="@Url.Action("Category", "Products", new { id = category.Key })">
+          <img class="img-thumbnail" src="@Url.Action("Category", "Images", new { id = category.Key })" />
+          <h3>@category.Name</h3>
+        </a>
+      </div>
+  }
+
+</div>

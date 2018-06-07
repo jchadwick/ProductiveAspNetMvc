@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title - H+ Sport</title>
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  @Styles.Render("~/Content/css")
+  @Scripts.Render("~/bundles/modernizr")
+  <link rel="icon" href="https://hplussport.com/wp-content/uploads/2015/12/cropped-HSport_01-32x32.png" sizes="32x32">
+</head>
+<body>
+  <div class="navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="~/" class="navbar-brand">
+          <img src="~/Content/logo.png" />
+        </a>
+      </div>
+      <div class="col-md-6 text-center title navbar-header">
+        <h1>@ViewData["Title"]</h1>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav pull-right">
+          <li class="dropdown">
+            @if (User.IsInRole(HPlusSports.Models.UserRoles.Admin))
+            {
+                <a class="dropbtn" href="@Url.Action("Index", "Inventory")">
+                  <i class="glyphicon glyphicon-list-alt"></i>
+                  Inventory
+                </a>
+            }
+          </li>
+          <li class="dropdown">
+            @{
+                var cart = HPlusSports.Application.Cart;
+            }
+            <a class="dropbtn nav-cart">
+              <i class="glyphicon glyphicon-shopping-cart"></i>
+              Cart
+              @if (cart.Items.Any())
+              {
+                  <span>
+                    (@cart.Items.Count() items)
+                  </span>
+              }
+            </a>
+            <div class="dropdown-content">
+
+              @if (cart.Items.Count == 0)
+              {
+                  <p>Your shopping cart is empty - keep shopping!</p>
+              }
+              else
+              {
+                  <table class="table table-condensed">
+                    @foreach (var item in cart.Items)
+                    {
+                        <tr class="text-middle">
+                          <td>
+                            <a href="@Url.Action("Remove", "Cart", new { id = item.Id })">
+                              <i class="glyphicon glyphicon-remove text-danger"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <img width="50" height="50" src="@Url.Action("Product", "Images", new { id = item.SKU })" alt="">
+                          </td>
+                          <td>
+                            <a href="@Url.Action("Product", "Products", new { id = item.SKU })">
+                              @item.Name
+                            </a>
+                          </td>
+                          <td class="text-right">
+                            @item.Quantity
+                            x
+                            @item.Price.ToString("C")
+                          </td>
+                        </tr>
+                    }
+                    <tr>
+                      <th colspan="3" class="text-right">
+                        Subtotal:
+                      </th>
+                      <th class="text-right">
+                        @cart.Subtotal.ToString("C")
+                      </th>
+                    </tr>
+                  </table>
+              }
+
+              <p class="buttons text-right">
+                <a href="@Url.Action("Index", "Cart")" class="btn btn-default">View Cart</a>
+              </p>
+            </div>
+          </li>
+          <li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form method="post" action="@Url.Action("Logoff", "Account", new { area = "" })">
+                  @Html.AntiForgeryToken()
+                  <button type="submit" class="btn btn-default">Logout</button>
+                </form>
+            }
+            else
+            {
+                <div>
+                  <a href="@Url.Action("Login", "Account")" class="btn btn-default">Login</a>
+                </div>
+            }
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="main" class="container">
+    @RenderBody()
+  </div>
+
+  @Scripts.Render("~/bundles/jquery")
+  @Scripts.Render("~/bundles/bootstrap")
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.30.1/js/jquery.tablesorter.min.js"></script>
+  @Scripts.Render("~/bundles/site")
+  @RenderSection("scripts", required: false)
+</body>
+</html>
