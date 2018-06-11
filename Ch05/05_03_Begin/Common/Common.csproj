@@ -58,6 +58,7 @@
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\ShoppingCartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\UpdateProductRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
