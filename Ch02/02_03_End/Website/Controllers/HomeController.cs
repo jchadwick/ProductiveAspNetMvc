@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace HPlusSports.Controllers
 {
-    [RoutePrefix("home/{name}")]
+    [RoutePrefix("home")]
     public class HomeController : Controller
     {
         private readonly HPlusSportsDbContext _context;
@@ -34,7 +34,7 @@ namespace HPlusSports.Controllers
             return View(categories);
         }
 
-        [Route("about")]
+        [Route("about/{name?}")]
         public ActionResult About(string name)
         {
             ViewBag.Message = "Your application description page, " + name;
